@@ -43,7 +43,7 @@ On other maps (Customs, Streets, Shoreline, Lighthouse, Factory, Interchange, et
 
 1. **Limited to Labs**: Regular spawns only occur on Labs map
 2. **Previous Low Spawn Rate**: The normal spawn was only 15% (now increased to 45%)
-3. **EXFIL Spawns Are Random**: Only a 50% chance the exits will be "armed" with BlackDiv
+3. **EXFIL Spawns Are Random**: Only a 50% chance the exits will be "armed" with Black Division
 4. **Other Maps Need Events**: Hunt mode on other maps requires specific triggers
 
 ### Adjusting Spawn Rates
