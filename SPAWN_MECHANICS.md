@@ -39,7 +39,7 @@ var normalSpawn = new BossLocationSpawn
     BossName = "blackDivAssault",
     BossChance = 15,                    // 15% chance per raid
     BossDifficulty = "normal",
-    BossEscortAmount = "2,2,2,3,3,4",  // Randomly picks: 2, 2, 2, 3, 3, or 4 escorts
+    BossEscortAmount = "2,2,2,3,3,4",  // Weighted random: 50% for 2, 33% for 3, 17% for 4 escorts
     BossEscortType = "blackDivAssault",
     BossZone = "BotZoneFloor2,BotZoneFloor1,BotZoneBasement",
     Delay = 0,                          // Spawns immediately
@@ -66,7 +66,7 @@ if (randomUtil.GetChance100(20))  // 20% chance this gate is "armed"
     {
         BossName = "blackDivAssault",
         BossChance = 100,                   // 100% spawn if armed
-        BossEscortAmount = "3,3,4,5",       // 3, 3, 4, or 5 escorts
+        BossEscortAmount = "3,3,4,5",       // Weighted random: 50% for 3, 25% for 4, 25% for 5 escorts
         BossZone = "BotZoneGate1",
         Delay = 8,                          // 8 second delay after trigger
         ForceSpawn = true,
@@ -270,7 +270,7 @@ private void AdjustPatrolSpawnsForMap(string map, MapConfig mapConfig, MainConfi
 public class MapPatrolConfig
 {
     public bool enablePatrols { get; set; }
-    public float patrolChance { get; set; }        // Spawn chance per patrol
+    public float patrolChance { get; set; }        // Spawn chance per patrol (0-100 percentage)
     public int patrolAmount { get; set; }          // Number of patrol groups
     public int patrolMin { get; set; }             // Min patrol size
     public int patrolMax { get; set; }             // Max patrol size
@@ -323,7 +323,7 @@ public class MapCheckpointConfig
 public class ZoneCheckpointConfig
 {
     public string checkpointZone { get; set; }
-    public float checkpointChance { get; set; }
+    public float checkpointChance { get; set; }    // Spawn chance (0-100 percentage)
     public int checkpointMin { get; set; }
     public int checkpointMax { get; set; }
     public float checkpointRadius { get; set; }
@@ -366,7 +366,7 @@ public class ZoneCheckpointConfig
 ### Labs Map
 - **15% base spawn chance** is relatively low
 - **20% chance per EXFIL gate** means only 1 in 5 raids have armed exits
-- **Combined probability**: ~15% normal + ~4% Gate1 + ~4% Gate2 = **~23% chance per Labs raid**
+- **Combined probability**: Chance of encountering at least one group = 1 - P(none spawn) = 1 - (0.85 × 0.8 × 0.8) ≈ **45.6% per Labs raid**
 
 ### Other Maps (Hunt Mode)
 - **8% chance every 4 minutes** = very infrequent checks
